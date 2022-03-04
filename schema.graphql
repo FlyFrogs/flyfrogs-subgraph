@@ -1,0 +1,31 @@
+type Token @entity {
+  id: ID!
+  tokenID: BigInt!
+  ipfsURI: String!
+  image: String!
+  name: String!
+  description: String!
+  background: String!
+  head: String!
+  skin: String!
+  mouth: String!
+  eyes: String!
+  outfit: String!
+  updatedAtTimestamp: BigInt!
+  owner: User!
+}
+
+type User @entity {
+  id: ID!
+  tokens: [Token!]! @derivedFrom(field: "owner")
+}
+
+# type _Schema_
+#   @fulltext(
+#     name: "frogSearch"
+#     language: en
+#     algorithm: rank
+#     include: [{entity: "Token", fields:
+#       [{ name: "name" }, { name: "description" }, { name: "head" }, { name: "skin" }, { name: "mouth" }, { name: "eyes" }, { name: "outfit"}
+#     ] }]
+#   )
